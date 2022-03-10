@@ -1,5 +1,5 @@
 import react from "react";
-//import "./TodoItem.css";
+import "./TodoItem.css";
 
 function TodoItem(props){
     return(
