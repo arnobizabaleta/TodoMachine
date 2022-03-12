@@ -8,7 +8,7 @@ import {CreateTodoButton} from './CreateTodoButton'
 // import './App.css';
 const defaultTodos = [
   {text: 'Lavar mi ropa', completed:true},
-  {text: 'Tomar el curso de Intro a React', completed:true},
+  {text: 'Tomar el curso de Intro a React', completed:false},
   {text: 'Sacar a mi perro', completed:false},
   {text: 'Estudiar Backend', completed:false},
 
@@ -40,6 +40,20 @@ function App(props) {
 
   }
 
+  //Función para tachar los TODOs completados una vez es detectado el evento click sobre
+  // el icono check especificado en el modulo TodoItem;
+  const completeTodos = (text) =>{
+    const todoIndex = todos.findIndex(todo => todo.text === text);
+    const newTodos = [...todos];
+    newTodos[todoIndex].completed = true;
+    setTodos(newTodos); //Actualizando nuestro estado de TODOs
+    /* todos[todoIndex] = {
+      text:todos[index].text,
+      completed: true,
+    }; */
+  }
+   
+
   return (
     <React.Fragment>
       <TodoCounter 
@@ -61,6 +75,7 @@ function App(props) {
           key={todo.text} 
           text={todo.text} 
           completed = {todo.completed}
+          onComplete = {() => completeTodos(todo.text)}
           /> 
         ))}
       </TodoList>
