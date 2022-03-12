@@ -7,9 +7,9 @@ function TodoItem(props){
     alert("Aquí ya completaste el todo " + props.text)
   }; */
   
-  const onDelete = () => {
+  /* const onDelete = () => {
     alert("Borraste el todo " + props.text)
-  };
+  }; */
     return(
         <li className="TodoItem">
         <span className={`Icon Icon-check ${props.completed && 'Icon-check--active'}`}
@@ -21,7 +21,7 @@ function TodoItem(props){
           {props.text}
         </p>
         <span className="Icon Icon-delete"
-            onClick={onDelete}
+            onClick={props.onDelete}
         >
           X
         </span>
