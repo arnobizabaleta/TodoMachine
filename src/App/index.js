@@ -7,11 +7,21 @@ const defaultTodos = [
   {text: 'Sacar a mi perro', completed:false},
   {text: 'Estudiar Backend', completed:false},
 
-];
-function App(props) {
-  
-  const [todos,setTodos] = React.useState(defaultTodos);
+]; 
+function App() {
+  const localStorageTodos = localStorage.getItem("TODOS_V1");
 
+  let parsedTodos;
+  
+  if(!localStorageTodos){
+    localStorage.setItem("TODOS_V1", JSON.stringify([]));
+    parsedTodos = [];
+  }else{
+    parsedTodos = JSON.parse(localStorageTodos);
+  }
+  
+  const [todos,setTodos] = React.useState(parsedTodos);
+ 
   const [searchValue, setSearchValue] = React.useState("");
 
   const completedTodos = todos.filter(todo => !!todo.completed).length;
@@ -35,13 +45,19 @@ function App(props) {
 
   }
 
+  const saveTodos = (newTodos) => {
+    const stringifiedTodos = JSON.stringify(newTodos);
+    localStorage.setItem("TODOS_V1", stringifiedTodos);
+    setTodos(newTodos);
+  };
+
   //Función para tachar el TODO completado una vez es detectado el evento click sobre
   // el icono check especificado en el modulo TodoItem;
   const completeTodo = (text) =>{
     const todoIndex = todos.findIndex(todo => todo.text === text);
     const newTodos = [...todos];
     newTodos[todoIndex].completed = true;
-    setTodos(newTodos); //Actualizando nuestro estado de TODOs
+    saveTodos(newTodos); //Actualizando nuestro estado de TODOs
     /* todos[todoIndex] = {
       text:todos[index].text,
       completed: true,
@@ -53,7 +69,7 @@ function App(props) {
     const newTodos = [...todos];
     //(PosictionstartCut,numberCuts)
     newTodos.splice(todoIndex, 1);//Eliminando el Todo correspondiente al index encontrado
-    setTodos(newTodos); //Actualizando nuestro estado de TODOs
+    saveTodos(newTodos); //Actualizando nuestro estado de TODOs
     
   }
    
