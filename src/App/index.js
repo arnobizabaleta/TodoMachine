@@ -1,6 +1,6 @@
 import React from 'react';
 import {AppUI} from './AppUI'
-// import './App.css';
+import './App.css';
 /* const defaultTodos = [
   {text: 'Lavar mi ropa', completed:true},
   {text: 'Tomar el curso de Intro a React', completed:false},
@@ -76,19 +76,21 @@ function App() {
       return todoText.includes(searchText);
     });
   }
-
+//Función para tachar el TODO completado una vez es detectado el evento click sobre
+  // el icono check especificado en el modulo TodoItem;
   const completeTodo = (text) => {
     const todoIndex = todos.findIndex(todo => todo.text === text);
     const newTodos = [...todos];
     newTodos[todoIndex].completed = true;
-    saveTodos(newTodos);
+    saveTodos(newTodos);//Actualizando nuestro estado de TODOs
   };
 
   const deleteTodo = (text) => {
     const todoIndex = todos.findIndex(todo => todo.text === text);
     const newTodos = [...todos];
-    newTodos.splice(todoIndex, 1);
-    saveTodos(newTodos);
+    //(PosictionstartCut,numberCuts)
+    newTodos.splice(todoIndex, 1);//Eliminando el Todo correspondiente al index encontrado
+    saveTodos(newTodos);//Actualizando nuestro estado de TODOs
   };
 
   return (
