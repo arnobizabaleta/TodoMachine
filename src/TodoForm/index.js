@@ -21,7 +21,7 @@ function TodoForm(){
     };
     return(
         <form onSubmit={onSubmit}>
-            <label className="TodoForm-label">Escribe tu nuevo To Do</label>
+            <label className="TodoForm-label">Escribe tu nuevo ToDo</label>
             <textarea 
                 value = {newTodoValue}
                 onChange = { onChange }
