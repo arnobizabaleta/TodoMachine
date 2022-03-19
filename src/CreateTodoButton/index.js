@@ -1,16 +1,18 @@
 import React from "react";
 import "./CreateTodoButton.css";
 
-const onclickButton = (msg) => {
-    alert(msg);
-};
 
 
 
-function CreateTodoButton(){
+
+function CreateTodoButton(props){
+    const onClickButton = () => {
+        props.setOpenModal( prevState => !prevState);//Cambiando el estado del modal al hacer click en el botton +
+    
+    };
     return (
-        <button className="CreateTodoButton"
-                onClick={() => {onclickButton("Mensaje a la vista")}}
+        <button className= "CreateTodoButton"
+                onClick = { onClickButton }
         >
             +
         </button>
