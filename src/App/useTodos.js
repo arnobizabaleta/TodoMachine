@@ -1,8 +1,8 @@
 import React from 'react';
 import {useLocalStorage} from './useLocalStorage';
-const TodoContext = React.createContext();
 
-function TodoProvider(props){
+//Custom Hook useTodos()
+function useTodos(){
     const {
         item: todos,
         saveItem: saveTodos,
@@ -52,26 +52,24 @@ function TodoProvider(props){
         newTodos.splice(todoIndex, 1);//Eliminando el Todo correspondiente al index encontrado
         saveTodos(newTodos);//Actualizando nuestro estado de TODOs
       };
-      return (
-        <TodoContext.Provider value={{
-          loading,
-          error,
-          totalTodos,
-          completedTodos,
-          searchValue,
-          setSearchValue,
-          searchedTodos,
-          addTodo,
-          completeTodo,
-          deleteTodo,
-          openModal, 
-          setOpenModal
-        }}>
-          {props.children}
-        </TodoContext.Provider>
-      );
+      //Devolviendo Todas las propiedades guardadas en nuestro Custom Hook useTodos
+      //como un objeto
+      return {
+        loading,
+        error,
+        totalTodos,
+        completedTodos,
+        searchValue,
+        setSearchValue,
+        searchedTodos,
+        addTodo,
+        completeTodo,
+        deleteTodo,
+        openModal, 
+        setOpenModal
+        };
 }
 
 
 
-export { TodoContext, TodoProvider };
+export { useTodos };
