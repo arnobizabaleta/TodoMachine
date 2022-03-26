@@ -11,7 +11,7 @@ import { Modal } from "../Modal";
 import { TodosError } from "../TodosError";
 import { TodosLoading } from "../TodosLoading";
 import { EmptyTodos } from "../EmptyTodos";
-import { ChangeAlertWithStorageListener } from '../ChangeAlert';
+import { ChangeAlert  } from '../ChangeAlert';
 import './App.css'; 
 
 
@@ -108,9 +108,9 @@ function App() {
         setOpenModal = {setOpenModal}
       />
 
-      <ChangeAlertWithStorageListener 
+      <ChangeAlert  
        sincronize = {sincronizeTodos}
-       /* ChangeAlertWithStorageListener
+       /* ChangeAlert
        Cuando cambiamos algo en una de nuestras pestañas, en nuestras otras pestañas
        va a aparecer una alerta y esa alerta tiene un botón que al presionarlo
        Permite volver a cargar toda la información de localstorage actualizada
