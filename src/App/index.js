@@ -38,30 +38,60 @@ function App() {
         <TodoCounter 
             totalTodos = {totalTodos}
             completedTodos = {completedTodos}
+            loading = {loading}
 
         />
         <TodoSearch 
             searchValue = {searchValue}
             setSearchValue = {setSearchValue}
+            loading = {loading}
         />
         </TodoHeader>
-     
-         
-      <TodoList>
-        {error && <TodosError error={error} />}
-        {loading && <TodosLoading />}
-        {(!loading && !searchedTodos.length) && <EmptyTodos />}
+      
+        <TodoList
+          error = {error}
+          loading = {loading}
+          searchedTodos = {searchedTodos}
+          totalTodos = { totalTodos }
+          searchText = {searchValue}
+          onError = {() => <TodosError/>}
+          onLoading = {() => <TodosLoading/>}
+          onEmptyTodos = {() => <EmptyTodos/>}
+          
+          onEmptySearchResults = {
+            (searchText) => <p>No hay resultados para {searchText}</p>
         
-        {searchedTodos.map(todo => (
-          <TodoItem
-            key={todo.text}
-            text={todo.text}
-            completed={todo.completed}
-            onComplete={() => completeTodo(todo.text)}
-            onDelete={() => deleteTodo(todo.text)}
-          />
-        ))}
+          }
+          //  Render Prop      
+       /*    render = {todo =>(
+                      <TodoItem
+                      key={todo.text}
+                      text={todo.text}
+                      completed={todo.completed}
+                      onComplete={() => completeTodo(todo.text)}
+                      onDelete={() => deleteTodo(todo.text)}
+                    />
+          )} */
+        
+        >
+        
+      
+        {/* Render function */}
+        {todo =>(
+                    <TodoItem
+                    key={todo.text}
+                    text={todo.text}
+                    completed={todo.completed}
+                    onComplete={() => completeTodo(todo.text)}
+                    onDelete={() => deleteTodo(todo.text)}
+                  />
+        )}
+      
       </TodoList>
+        
+      
+         
+      
         
           
       {!!openModal && (
