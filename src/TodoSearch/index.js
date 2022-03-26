@@ -13,6 +13,7 @@ function TodoSearch({searchValue, setSearchValue, loading}){
          placeholder="Cebolla"
          value={searchValue}
          onChange={onSearchValueChange}
+         disabled={loading}
         
         >
         
