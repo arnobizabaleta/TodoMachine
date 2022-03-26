@@ -11,8 +11,10 @@ function TodoList(props){
 
             {(!!props.totalTodos && !props.searchedTodos.length ) && props.onEmptySearchResults(props.searchText)}
 
-            {props.searchedTodos.map( renderFunc)}
-            {/* {props.searchedTodos.map(todo => props.render(todo))} */}
+            {/* Si no había errores y si no estabamos cargando, por cad TodoBuscado */}
+            {/* Así desasparecen los TODOs mientras se carga la info actualizada */}
+            {(!props.loading && !props.error) && props.searchedTodos.map(renderFunc)}
+            
 
             <ul>
                 {props.children}

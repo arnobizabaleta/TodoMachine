@@ -11,7 +11,8 @@ import { Modal } from "../Modal";
 import { TodosError } from "../TodosError";
 import { TodosLoading } from "../TodosLoading";
 import { EmptyTodos } from "../EmptyTodos";
-import './App.css';
+import { ChangeAlertWithStorageListener } from '../ChangeAlert';
+import './App.css'; 
 
 
 
@@ -29,6 +30,7 @@ function App() {
     searchValue, 
     setSearchValue,
     addTodo,
+    sincronizeTodos,
     
   } = useTodos();
   return (
@@ -105,6 +107,18 @@ function App() {
       <CreateTodoButton 
         setOpenModal = {setOpenModal}
       />
+
+      <ChangeAlertWithStorageListener 
+       sincronize = {sincronizeTodos}
+       /* ChangeAlertWithStorageListener
+       Cuando cambiamos algo en una de nuestras pestañas, en nuestras otras pestañas
+       va a aparecer una alerta y esa alerta tiene un botón que al presionarlo
+       Permite volver a cargar toda la información de localstorage actualizada
+       Con sincronia a las otra u otras pestañas abiertas con la misma app */
+
+      />
+
+    
     </React.Fragment>
   );
 }
